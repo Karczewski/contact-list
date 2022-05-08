@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background:#f4f4f4;
+  }
+  
+  * {
+    box-sizing: border-box;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.selected {
+  color: #333333;
+  font-size: 26px;
+  font-weight: 700;
+  margin: 10px 20px 0 0;
+}
