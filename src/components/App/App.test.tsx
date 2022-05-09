@@ -1,5 +1,9 @@
 import React from 'react';
-import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
+import {
+  render,
+  screen,
+  waitForElementToBeRemoved,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from './App';
 import * as apiData from '../../api';
@@ -26,7 +30,9 @@ afterEach(() => {
 
 test('renders 10 tiles', async () => {
   render(<App />);
-  await waitForElementToBeRemoved(() => screen.queryAllByTestId('loading-component')[0]);
+  await waitForElementToBeRemoved(
+    () => screen.queryAllByTestId('loading-component')[0]
+  );
   expect(screen.getByText(mockData[0].firstNameLastName)).toBeInTheDocument();
   expect(screen.getByText(mockData[0].jobTitle)).toBeInTheDocument();
   expect(screen.getByText(mockData[0].emailAddress)).toBeInTheDocument();
@@ -37,7 +43,9 @@ test('renders 10 tiles', async () => {
 
 test('can select/deselect tile', async () => {
   render(<App />);
-  await waitForElementToBeRemoved(() => screen.queryAllByTestId('loading-component')[0]);
+  await waitForElementToBeRemoved(
+    () => screen.queryAllByTestId('loading-component')[0]
+  );
   const firstTile = screen.getAllByTestId('person-tile')[0];
   userEvent.click(firstTile);
   expect(screen.getByText(/selected contacts: 1/i)).toBeInTheDocument();
@@ -47,7 +55,9 @@ test('can select/deselect tile', async () => {
 
 test('can select/deselect all', async () => {
   render(<App />);
-  await waitForElementToBeRemoved(() => screen.queryAllByTestId('loading-component')[0]);
+  await waitForElementToBeRemoved(
+    () => screen.queryAllByTestId('loading-component')[0]
+  );
   const checkAllBtn = screen.getByRole('button', {
     name: /check all/i,
   });
@@ -62,12 +72,16 @@ test('can select/deselect all', async () => {
 
 test('can load more tiles', async () => {
   render(<App />);
-  await waitForElementToBeRemoved(() => screen.queryAllByTestId('loading-component')[0]);
+  await waitForElementToBeRemoved(
+    () => screen.queryAllByTestId('loading-component')[0]
+  );
   const loadMoreBtn = screen.getByRole('button', {
     name: /more/i,
   });
   userEvent.click(loadMoreBtn);
-  await waitForElementToBeRemoved(() => screen.queryAllByTestId('loading-component')[0]);
+  await waitForElementToBeRemoved(
+    () => screen.queryAllByTestId('loading-component')[0]
+  );
   expect(screen.getByText(mockData[10].firstNameLastName)).toBeInTheDocument();
   expect(screen.getAllByText(mockData[10].jobTitle)[0]).toBeInTheDocument();
   expect(screen.getByText(mockData[10].emailAddress)).toBeInTheDocument();
@@ -82,9 +96,13 @@ test('handle api error with try again button', async () => {
     throw new Error('Something went wrong');
   });
   render(<App />);
-  await waitForElementToBeRemoved(() => screen.queryAllByTestId('loading-component')[0]);
+  await waitForElementToBeRemoved(
+    () => screen.queryAllByTestId('loading-component')[0]
+  );
 
-  expect(screen.getByRole('button', {
-    name: /try again/i,
-  })).toBeInTheDocument();
+  expect(
+    screen.getByRole('button', {
+      name: /try again/i,
+    })
+  ).toBeInTheDocument();
 });

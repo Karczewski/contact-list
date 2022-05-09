@@ -5,15 +5,12 @@
         "jest": true
     },
     "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended",
         "plugin:jsx-a11y/recommended",
         "plugin:react-hooks/recommended",
         "plugin:testing-library/react",
         "airbnb",
-        "plugin:import/typescript",
-        "plugin:import/errors",
-        "plugin:import/warnings"
+        "eslint-config-airbnb",
+        "prettier"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -25,10 +22,11 @@
     },
     "plugins": [
         "react",
-        "import",
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "prettier"
     ],
     "rules": {
+        "prettier/prettier": "error",
         "no-use-before-define": "off",
         "@typescript-eslint/no-use-before-define": [
             "error"
@@ -44,9 +42,6 @@
                 ]
             }
         ],
-        //   "react/state-in-constructor": "off",
-        //   "@typescript-eslint/no-use-before-define": "off",
-        //   "no-use-before-define": "off",
         "camelcase": "off",
         "import/extensions": [
             "error",

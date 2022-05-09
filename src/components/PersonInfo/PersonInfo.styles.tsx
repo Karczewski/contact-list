@@ -13,15 +13,15 @@ export const PersonWrapper = styled.div`
   word-break: break-word;
 
   &:hover {
-    background-color: #F3F4F6;
+    background-color: #f3f4f6;
   }
   &:active {
-    background-color: #EDEFF2;
+    background-color: #edeff2;
     box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
     transition: none 0s;
   }
 
-  ${(props: {isActive: boolean}) => {
+  ${(props: { isActive: boolean }) => {
     if (props.isActive) {
       return `
         border: 3px solid pink;

@@ -1,18 +1,13 @@
 import React, { ReactElement } from 'react';
 import * as S from './DefaultLayout.styles';
 
-function DefaultLayout({ children }: {children: ReactElement}) {
+function DefaultLayout({ children }: { children: ReactElement }) {
   return (
     <>
       <S.Navbar>
-        <S.Container>
-          Logo
-        </S.Container>
+        <S.Container>Logo</S.Container>
       </S.Navbar>
-      <S.Container>
-        {children}
-      </S.Container>
-
+      <S.Container>{children}</S.Container>
     </>
   );
 }

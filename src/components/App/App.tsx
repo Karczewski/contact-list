@@ -5,9 +5,10 @@ import { useFetchPeople } from '../../hooks/useFetchPeople';
 import Skeleton from '../Skeleton/Skeleton';
 
 type SelectedPersons = {
-  [id: string]: boolean
-}
-const isPersonSelected = (selectedIds: SelectedPersons, personId: string) => selectedIds[personId];
+  [id: string]: boolean;
+};
+const isPersonSelected = (selectedIds: SelectedPersons, personId: string) =>
+  selectedIds[personId];
 
 function App() {
   const [selectedIds, setSelectedIds] = useState<SelectedPersons>({});
@@ -17,14 +18,15 @@ function App() {
     if (state.data && Object.keys(selectedIds).length === state.data.length) {
       setSelectedIds({});
     } else if (state.data) {
-      setSelectedIds(state.data?.reduce((acc, cur) => ({ ...acc, [cur.id]: true }), {}));
+      setSelectedIds(
+        state.data?.reduce((acc, cur) => ({ ...acc, [cur.id]: true }), {})
+      );
     }
   };
 
   const handleTileClick = (personId: string) => () => {
     if (isPersonSelected(selectedIds, personId)) {
-      // const selectedIdsCopy = { ...selectedIds };
-      const selectedIdsCopy = JSON.parse(JSON.stringify(selectedIds));
+      const selectedIdsCopy = { ...selectedIds };
       delete selectedIdsCopy[personId];
       setSelectedIds(selectedIdsCopy);
     } else {
@@ -36,14 +38,15 @@ function App() {
     <S.Wrapper>
       <S.SelectedItems>
         Selected contacts:
-        {' '}
         {Object.keys(selectedIds).length}
       </S.SelectedItems>
       <S.Button onClick={toggleSelected} type="button">
-        {state.data && Object.keys(selectedIds).length === state.data.length ? 'Uncheck all' : 'Check all'}
+        {state.data && Object.keys(selectedIds).length === state.data.length
+          ? 'Uncheck all'
+          : 'Check all'}
       </S.Button>
       <S.List>
-        {state.data && state.data.map((personInfo) => (
+        {state?.data?.map((personInfo) => (
           <PersonInfo
             key={personInfo.id}
             data={personInfo}
@@ -55,13 +58,17 @@ function App() {
       </S.List>
       <S.ActionContainer>
         {state.status === 'rejected' && (
-        <>
-          <S.ErrorMessage>{state.error}</S.ErrorMessage>
-          <S.Button onClick={refetch} type="button">Try again</S.Button>
-        </>
+          <>
+            <S.ErrorMessage>{state.error}</S.ErrorMessage>
+            <S.Button onClick={refetch} type="button">
+              Try again
+            </S.Button>
+          </>
         )}
         {state.status === 'resolved' && (
-        <S.Button onClick={refetch} type="button">More</S.Button>
+          <S.Button onClick={refetch} type="button">
+            More
+          </S.Button>
         )}
       </S.ActionContainer>
     </S.Wrapper>
