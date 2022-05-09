@@ -5,7 +5,7 @@ import apiData from '../api';
 type IState = {
   status: 'idle' | 'pending' | 'resolved' | 'rejected';
   data: Person[] | null;
-  error: any;
+  error: Error | null;
 };
 
 export const useFetchPeople = () => {
@@ -26,7 +26,7 @@ export const useFetchPeople = () => {
         });
       })
       .catch((error) => {
-        setState({ ...state, status: 'rejected', error: error.message });
+        setState({ ...state, status: 'rejected', error });
       });
   };
 

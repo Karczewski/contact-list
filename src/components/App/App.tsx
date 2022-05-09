@@ -38,7 +38,9 @@ function App() {
     <S.Wrapper>
       <S.SelectedItems>
         Selected contacts:
-        {Object.keys(selectedIds).length}
+        <S.SelectedItemsValue>
+          {Object.keys(selectedIds).length}
+        </S.SelectedItemsValue>
       </S.SelectedItems>
       <S.Button onClick={toggleSelected} type="button">
         {state.data && Object.keys(selectedIds).length === state.data.length
@@ -59,7 +61,7 @@ function App() {
       <S.ActionContainer>
         {state.status === 'rejected' && (
           <>
-            <S.ErrorMessage>{state.error}</S.ErrorMessage>
+            <S.ErrorMessage>{state.error?.message}</S.ErrorMessage>
             <S.Button onClick={refetch} type="button">
               Try again
             </S.Button>

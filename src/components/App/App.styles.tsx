@@ -10,6 +10,9 @@ export const SelectedItems = styled.div`
   font-weight: 700;
   margin-bottom: 1rem;
 `;
+export const SelectedItemsValue = styled.span`
+  margin-left: 10px;
+`;
 
 export const List = styled.div`
   display: grid;

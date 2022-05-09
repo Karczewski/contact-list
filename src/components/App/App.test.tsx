@@ -3,6 +3,7 @@ import {
   render,
   screen,
   waitForElementToBeRemoved,
+  within,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from './App';
@@ -47,10 +48,11 @@ test('can select/deselect tile', async () => {
     () => screen.queryAllByTestId('loading-component')[0]
   );
   const firstTile = screen.getAllByTestId('person-tile')[0];
+  const view = screen.getByText(/selected contacts:/i);
   userEvent.click(firstTile);
-  expect(screen.getByText(/selected contacts: 1/i)).toBeInTheDocument();
+  expect(within(view).getByText(/1/i)).toBeInTheDocument();
   userEvent.click(firstTile);
-  expect(screen.getByText(/selected contacts: 0/i)).toBeInTheDocument();
+  expect(within(view).getByText(/0/i)).toBeInTheDocument();
 });
 
 test('can select/deselect all', async () => {
@@ -61,13 +63,15 @@ test('can select/deselect all', async () => {
   const checkAllBtn = screen.getByRole('button', {
     name: /check all/i,
   });
+  const view = screen.getByText(/selected contacts:/i);
+
   userEvent.click(checkAllBtn);
-  expect(screen.getByText(/selected contacts: 10/i)).toBeInTheDocument();
+  expect(within(view).getByText(/10/i)).toBeInTheDocument();
   const UnCheckAll = screen.getByRole('button', {
     name: /uncheck all/i,
   });
   userEvent.click(UnCheckAll);
-  expect(screen.getByText(/selected contacts: 0/i)).toBeInTheDocument();
+  expect(within(view).getByText(/0/i)).toBeInTheDocument();
 });
 
 test('can load more tiles', async () => {
